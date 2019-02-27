@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,7 +21,7 @@ public class SubActivity extends AppCompatActivity {
     private Timer timer;
     private TimerTask timerTask;
     private int count; // カウンタ変数
-    private int second = 4 * 6;
+    private int second = 4 * 60;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,7 @@ public class SubActivity extends AppCompatActivity {
         start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                second = 4 * 6;
+                second = 4 * 60;
                 timer = new Timer();
                 timerTask = new Task(); // タイマー時の動作
                 timer.schedule(timerTask, 1000, 1000);
@@ -63,7 +62,6 @@ public class SubActivity extends AppCompatActivity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    //タイマー作動時の実際の動作（カウントアップ）
                     second -= 1;
                     //テキストビューに現在のカウント値を表示する
                     textview.setText(String.valueOf(second/60) + ":" + String.valueOf(second%60));
